@@ -64,6 +64,9 @@ module.exports = {
         },
       },
     },
+    fontFamily: {
+      sans: ["Pretendard"],
+    },
     extend: {
       colors: {
         primary: {

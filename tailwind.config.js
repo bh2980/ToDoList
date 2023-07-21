@@ -4,63 +4,63 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     spacing: {
-      2: "2px",
-      4: "4px",
-      8: "8px",
-      12: "12px",
-      16: "16px",
-      20: "20px",
-      24: "24px",
-      32: "32px",
-      40: "40px",
+      2: "2rem",
+      4: "4rem",
+      8: "8rem",
+      12: "12rem",
+      16: "16rem",
+      20: "20rem",
+      24: "24rem",
+      32: "32rem",
+      40: "40rem",
     },
     typography: {
       head1: {
         css: {
-          fontSize: "42px",
-          lineHeight: "48px",
+          fontSize: "42rem",
+          lineHeight: "48rem",
         },
       },
       head2: {
         css: {
-          fontSize: "36px",
-          lineHeight: "40px",
+          fontSize: "36rem",
+          lineHeight: "40rem",
         },
       },
       head3: {
         css: {
-          fontSize: "24px",
-          lineHeight: "32px",
+          fontSize: "24rem",
+          lineHeight: "32rem",
         },
       },
       head4: {
         css: {
-          fontSize: "20px",
-          lineHeight: "24px",
+          fontSize: "20rem",
+          lineHeight: "24rem",
         },
       },
       head5: {
         css: {
-          fontSize: "18px",
-          lineHeight: "24px",
+          fontSize: "18rem",
+          lineHeight: "24rem",
         },
       },
       body1: {
         css: {
-          fontSize: "16px",
-          lineHeight: "24px",
+          fontSize: "16rem",
+          lineHeight: "24rem",
         },
       },
       body2: {
         css: {
-          fontSize: "14px",
-          lineHeight: "16px",
+          fontSize: "14rem",
+          lineHeight: "16rem",
         },
       },
       body3: {
         css: {
-          fontSize: "12px",
-          lineHeight: "16px",
+          fontSize: "12rem",
+          lineHeight: "16rem",
         },
       },
     },

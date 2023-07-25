@@ -1,71 +1,72 @@
-import { useState } from "react";
-import Tile from "../Atom/Tile";
-import Line from "../Atom/Line";
+import { useRef, useState } from "react";
+import Divider from "../Component/Divider";
 
-interface TodoType {
+export interface ToDoType {
   id: number;
   todo: string;
 }
 
 function Main() {
-  const [todos, setTodos] = useState<TodoType[]>([]);
-  const [inputString, setInputString] = useState<string>("");
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [toDoList, setToDoList] = useState<ToDoType[]>([]);
 
-  const addTodos = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && inputString.length > 0) {
-      setTodos((current) => [
-        ...current,
-        { id: Date.now(), todo: inputString },
-      ]);
-      setInputString("");
+  const addToDo = (todo: string) => {
+    setToDoList((current) => [...current, { id: Date.now(), todo }]);
+  };
+
+  const inputEnterListener = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && inputRef.current) {
+      addToDo(inputRef.current.value);
+      inputRef.current.value = "";
     }
   };
 
-  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputString(e.target.value);
-  };
-
-  const removeTodo = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    removeTodoId: number,
-  ) => {
-    setTodos((current) => current.filter((todo) => todo.id !== removeTodoId));
+  const removeToDo = (removeToDoID: number) => {
+    setToDoList((current) =>
+      current.filter((todo) => todo.id !== removeToDoID),
+    );
   };
 
   return (
-    <div className="flex h-[720rem] w-[360rem] flex-col items-center bg-primary-900 px-24 py-32">
-      <Tile>
+    <div className="text-2xl flex h-screen w-full flex-col items-center justify-center gap-3 bg-slate-900 p-8 text-blue-100">
+      <div className="flex h-[80px] w-full gap-4">
         <input
-          type="text"
-          className="placeholder-gray300 text-head4 w-full bg-gray-800 text-gray-50 outline-none"
+          className="h-full w-full rounded-lg bg-slate-600 px-8 outline-none"
           placeholder="할 일 입력"
-          value={inputString}
-          onKeyDown={(e) => addTodos(e)}
-          onChange={(e) => onChangeInput(e)}
+          ref={inputRef}
+          onKeyDown={(e) => inputEnterListener(e)}
         ></input>
-      </Tile>
-      <Line />
-      {todos.length === 0 ? (
-        <div className="my-16 flex h-[calc(100%-96rem)] w-full flex-col items-center justify-center">
-          <span className="text-head4 text-gray-300">할 일 없음</span>
-        </div>
-      ) : (
-        <div className="my-16 flex h-[calc(100%-96rem)] w-full flex-col gap-16">
-          {todos.map((todo) => {
-            return (
-              <div className="flex flex-row gap-8" key={todo.id}>
-                <Tile>{todo.todo}</Tile>
-                <button
-                  className="text-head4 h-[64rem] w-[64rem] rounded-lg bg-red-500 text-gray-50 hover:bg-red-700"
-                  onClick={(e) => removeTodo(e, todo.id)}
-                >
-                  삭제
-                </button>
+        <button className="w-[96px] rounded-lg bg-indigo-600 hover:bg-indigo-800">
+          추가
+        </button>
+      </div>
+      <Divider />
+      <div
+        className={`flex h-full w-full flex-col gap-4 overflow-auto ${
+          toDoList.length === 0 ? "items-center justify-center" : ""
+        }`}
+      >
+        {toDoList.length === 0 ? (
+          <span>할 일 없음</span>
+        ) : (
+          toDoList.map((todo: ToDoType) => (
+            <div
+              className="flex h-[80px] min-h-[80px] w-full gap-4"
+              key={todo.id}
+            >
+              <div className="flex w-full items-center rounded-lg bg-slate-600 px-8">
+                <span>{todo.todo}</span>
               </div>
-            );
-          })}
-        </div>
-      )}
+              <button
+                className="w-[96px] rounded-lg bg-red-600 hover:bg-red-800"
+                onClick={() => removeToDo(todo.id)}
+              >
+                삭제
+              </button>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 }

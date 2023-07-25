@@ -1,8 +1,26 @@
-function ToDoInput({
-  inputRef,
-  inputEnterListener,
-  addButtonListener,
-}: ToDoInputProp) {
+import { useContext, useRef } from "react";
+import { ToDoContext } from "../Page/Main";
+
+function ToDoInput() {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const { dispatchToDos } = useContext(ToDoContext);
+
+  const addToDo = (todo: string) => {
+    dispatchToDos({ type: "CREATE", todo });
+    inputRef!.current!.value = "";
+  };
+
+  const inputEnterListener = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && inputRef.current) {
+      addToDo(inputRef.current.value);
+    }
+  };
+
+  const addButtonListener = () => {
+    if (inputRef.current) addToDo(inputRef.current.value);
+  };
+
   return (
     <div className="flex h-[80px] w-full gap-4">
       <input
@@ -22,9 +40,3 @@ function ToDoInput({
 }
 
 export default ToDoInput;
-
-interface ToDoInputProp {
-  inputRef: React.MutableRefObject<HTMLInputElement | null>;
-  inputEnterListener: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  addButtonListener: () => void;
-}

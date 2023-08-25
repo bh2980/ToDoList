@@ -1,4 +1,4 @@
-branchName: short,
+branchName: short
 autoCloseIssue: true
 branches:
   - label: enhancement

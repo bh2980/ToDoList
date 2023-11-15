@@ -1,4 +1,4 @@
-import { ToDoType } from "../../Page/Main";
+import { ToDoType } from "../../page/Main";
 import ToDoAction from "./actions/ToDoActions";
 
 function ToDoReducer(state: ToDoType[], action: ToDoAction) {

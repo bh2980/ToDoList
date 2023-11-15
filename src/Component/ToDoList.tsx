@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ToDoType, ToDoContext } from "../Page/Main";
+import { ToDoType, ToDoContext } from "../page/Main";
 import ToDoItem from "./ToDoItem";
 
 function ToDoList() {

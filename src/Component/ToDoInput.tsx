@@ -1,24 +1,24 @@
-import { useContext, useRef } from "react";
-import { ToDoContext } from "../page/Main";
+import { useRef } from "react";
+import { useAppDispatch } from "../hooks/storeHooks";
+import { addToDo } from "../store/ToDoSlice";
 
 function ToDoInput() {
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const dispatch = useAppDispatch();
 
-  const { dispatchToDos } = useContext(ToDoContext);
-
-  const addToDo = (todo: string) => {
-    dispatchToDos({ type: "CREATE", todo });
+  const addTodoList = (todo: string) => {
+    dispatch(addToDo(todo));
     inputRef!.current!.value = "";
   };
 
   const inputEnterListener = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && inputRef.current) {
-      addToDo(inputRef.current.value);
+      addTodoList(inputRef.current.value);
     }
   };
 
   const addButtonListener = () => {
-    if (inputRef.current) addToDo(inputRef.current.value);
+    if (inputRef.current) addTodoList(inputRef.current.value);
   };
 
   return (

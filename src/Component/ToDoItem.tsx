@@ -1,11 +1,11 @@
-import { useContext } from "react";
-import { ToDoContext } from "../page/Main";
+import { useDispatch } from "react-redux";
+import { removeToDo } from "../store/ToDoSlice";
 
 function ToDoItem({ id, todo }: ToDoItemProp) {
-  const { dispatchToDos } = useContext(ToDoContext);
+  const dispatch = useDispatch();
 
-  const removeToDo = (removeToDoID: number) => {
-    dispatchToDos({ type: "REMOVE", id: removeToDoID });
+  const removeToDoList = (removeToDoID: number) => {
+    dispatch(removeToDo(removeToDoID));
   };
 
   return (
@@ -15,7 +15,7 @@ function ToDoItem({ id, todo }: ToDoItemProp) {
       </div>
       <button
         className="w-[96px] rounded-lg bg-red-600 hover:bg-red-800"
-        onClick={() => removeToDo(id)}
+        onClick={() => removeToDoList(id)}
       >
         삭제
       </button>

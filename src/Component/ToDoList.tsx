@@ -1,9 +1,9 @@
-import { useContext } from "react";
-import { ToDoType, ToDoContext } from "../page/Main";
+import { ToDoType } from "../page/Main";
 import ToDoItem from "./ToDoItem";
+import { useAppSelector } from "../hooks/storeHooks";
 
 function ToDoList() {
-  const { toDos } = useContext(ToDoContext);
+  const toDos = useAppSelector((store) => store.todos.toDos);
 
   return (
     <div

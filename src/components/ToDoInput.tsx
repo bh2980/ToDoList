@@ -1,5 +1,5 @@
 import { useContext, useRef } from "react";
-import { ToDoContext } from "../page/Main";
+import { ToDoContext } from "../context/ToDoContext";
 
 function ToDoInput() {
   const inputRef = useRef<HTMLInputElement | null>(null);

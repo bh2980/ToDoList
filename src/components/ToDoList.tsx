@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { ToDoType, ToDoContext } from "../page/Main";
 import ToDoItem from "./ToDoItem";
+import { ToDoContext } from "../context/ToDoContext";
+import type { ToDoType } from "../context/ToDoContext.types";
 
 function ToDoList() {
   const { toDos } = useContext(ToDoContext);

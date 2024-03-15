@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ToDoContext } from "../page/Main";
+import { ToDoContext } from "../context/ToDoContext";
 
 function ToDoItem({ id, todo }: ToDoItemProp) {
   const { dispatchToDos } = useContext(ToDoContext);

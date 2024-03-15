@@ -1,5 +1,5 @@
-import { ToDoType } from "../../page/Main";
-import ToDoAction from "./actions/ToDoActions";
+import type { ToDoType } from "../../context/ToDoContext.types";
+import type ToDoAction from "./actions/ToDoActions";
 
 function ToDoReducer(state: ToDoType[], action: ToDoAction) {
   switch (action.type) {
